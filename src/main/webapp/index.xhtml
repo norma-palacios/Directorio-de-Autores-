@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Directorio de Autores</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 100%;
+            margin-top: 40px;
+        }
+
+        .card {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .card-header {
+            background-color: #ffffff;
+            color: black;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            background-color: #1d3557;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #457b9d;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <div class="border border-dark px-4">
+            <h2 class="mb-4 mt-3">Directorio de Autores</h2>
+            <label class="fs-4 fw-semibold">Formulario de Autores</label>
+            <div class="border border-secondary rounded mt-2 mb-5">
+                <h:form id="formAutor" styleClass="px-3">
+                    <div class="mb-3 mt-3">
+                        <h:outputLabel for="nombre" value="Nombre del Autor:" styleClass="form-label"/>
+                        <h:inputText id="nombre" value="#{autorBean.nombre}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="El nombre es obligatorio.">
+                            <f:passThroughAttribute
+                                    name="placeholder"
+                                    value="Nombre"
+                            />
+                        </h:inputText>
+                    </div>
+                    <div class="mb-3">
+                        <h:outputLabel for="fechaNacimiento" value="Fecha de Nacimiento:" styleClass="form-label"/>
+                        <h:inputText id="fechaNacimiento" value="#{autorBean.fechaNacimiento}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="La fecha es obligatoria.">
+                            <f:convertDateTime pattern="yyyy-MM-dd"/>
+                            <f:passThroughAttribute
+                                    name="placeholder"
+                                    value="Fecha de Nacimiento"
+                            />
+                        </h:inputText>
+                    </div>
+                    <div class="mb-3">
+                        <h:outputLabel for="telefono" value="Teléfono:" styleClass="form-label"/>
+                        <h:inputText id="telefono" value="#{autorBean.telefono}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="El teléfono es obligatorio.">
+                            <f:passThroughAttribute
+                                    name="placeholder"
+                                    value="Numero de telefono"
+                            />
+                        </h:inputText>
+                    </div>
+                    <div class="mb-3">
+                        <h:outputLabel for="genero" value="Género:" styleClass="form-label"/>
+                        <h:selectOneMenu id="genero" value="#{autorBean.genero}"
+                                         styleClass="form-select"
+                                         required="true"
+                                         requiredMessage="Debe seleccionar un género.">
+                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                            <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                            <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="text-center">
+                        <h:commandButton value="AGREGAR"
+                                         action="#{autorBean.agregarAutor}"
+                                         styleClass="btn btn-primary px-2"/>
+                    </div>
+
+                    <!-- Validaciones -->
+                    <label class="mt-4">Validaciones</label>
+                    <div class="mb-3 border border-dark h-50 ps-2 pe-2 rounded" style="min-height: 80px;">
+                        <h:messages layout="table"
+                                    styleClass="alert alert-danger"/>
+                    </div>
+                </h:form>
+            </div>
+
+            <div class="mt-5">
+                <div class="mt-1 d-flex justify-content-between align-items-center mt-5">
+                    <label class="fs-4 fw-semibold">Directorio de Autores</label>
+                    <div class="mb-3">
+                        <h:selectOneMenu id="genero" value="#{autorBean.genero}"
+                                         styleClass="form-select w-auto"
+                                         required="true"
+                                         requiredMessage="Debe seleccionar un género."
+                        >
+                            <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                            <f:selectItem itemLabel="Drama" itemValue="Drama"/>
+                            <f:selectItem itemLabel="Terror" itemValue="Terror"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="mt-1 mb-4">
+                    <h:form>
+                        <table class="table table-bordered table-hover align-middle">
+                            <thead class="table-secondary">
+                            <tr>
+                                <th>ID Autor</th>
+                                <th>Nombre del Autor</th>
+                                <th>Teléfono</th>
+                                <th>Fecha de Nacimiento</th>
+                                <th>Género Literario</th>
+                                <th>Operaciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mauricio Figueroa</td>
+                                <td>22505555</td>
+                                <td>01/01/1567</td>
+                                <td>Drama</td>
+                                <td>
+                                    <h:commandButton value="editar" title="Editar"
+                                                     styleClass="btn btn-outline-dark btn-sm me-2"/>
+                                    <h:commandButton value="borrar" title="Borrar"
+                                                     styleClass="btn btn-outline-dark btn-sm"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Joel Amaya</td>
+                                <td>22505555</td>
+                                <td>01/12/1997</td>
+                                <td>Terror</td>
+                                <td>
+                                    <h:commandButton value="editar" title="Editar"
+                                                     styleClass="btn btn-outline-dark btn-sm me-2"/>
+                                    <h:commandButton value="borrar" title="Borrar"
+                                                     styleClass="btn btn-outline-dark btn-sm"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-end align-items-center">
+                            <p class="mb-0"> Numero de autores: 2 </p>
+                            <h:commandButton value="Contar" styleClass="btn btn-primary btn-sm ms-2"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional, para componentes dinámicos) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</h:body>
+</html>
