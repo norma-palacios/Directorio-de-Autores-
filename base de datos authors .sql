@@ -54,3 +54,9 @@ CREATE TABLE `autor` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Inserta los géneros que quieres que aparezcan
+INSERT INTO genero (nombre_genero) VALUES ('Drama');
+INSERT INTO genero (nombre_genero) VALUES ('Terror');
+INSERT INTO genero (nombre_genero) VALUES ('Ciencia Ficción');
+INSERT INTO genero (nombre_genero) VALUES ('Poesía');
+INSERT INTO genero (nombre_genero) VALUES ('Novela Histórica');
